@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">    
+        <encoder>
+            <pattern>%clr(%d{dd MMM yyyy HH:mm:ss}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(-){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wex</pattern>
+        </encoder>
+    </appender>    
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="ng.tfare" level="DEBUG"/>        
+    <!--logger name="org.springframework.security" level="DEBUG" />
+    <logger name="org.hibernate.stat" level="TRACE"/>
+    <logger name="org.hibernate.type" level="TRACE" />
+    <logger name="org.hibernate.SQL" level="DEBUG" /-->
+    <root level="INFO">
+        <appender-ref ref="consoleAppender" />        
+    </root>
+</configuration>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+>
+
+    <changeSet id="create-user-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="user">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="password" type="varchar(100)" />
+            <column name="email" type="varchar(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>       
+            <column name="first_name" type="varchar(100)" />					
+            <column name="last_name" type="varchar(100)" />					
+            <column name="mobile_number" type="varchar(50)" />					
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>            
+            <column name="role_id" type="char(36)" />  
+            <column name="tenant_id" type="char(36)" /> 
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>
+            <column name="created_ip" type="varchar(50)" />            		     		
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-role-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="role">
+            <column name="id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="role_name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>               
+            <column name="tenant_id" type="char(36)" />
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>                     		     		
+        </createTable>
+    </changeSet>        
+    
+    <changeSet id="create-permission-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="permission">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="permission_key" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(100)"/>
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>   
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>                     		     		
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="create-tenant-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="tenant">
+            <column name="id" type="char(36)" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="tenant_name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>   
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>                     		     		
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="create-user_role-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="user_role">
+            <column name="user_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="role_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>                        		     		
+        </createTable>
+    </changeSet> 
+    
+    <!--changeSet id="create-menu_role-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="menu_role">
+            <column name="menu_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" />
+            </column>                        		     		
+        </createTable>
+    </changeSet-->
+    
+    <changeSet id="create-roles_permissions-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="roles_permissions">
+            <column name="role_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="permission_id" type="bigint">
+                <constraints nullable="false" primaryKey="true" />
+            </column>                        		     		
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="create-sequence_generator-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="sequence_generator">
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="count" type="bigint" />                      		     		
+        </createTable>
+    </changeSet>  
+            
+    <changeSet id="create-client-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="client">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="client_id" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="client_secret" type="varchar(100)"/>
+            <column name="ip_address" type="varchar(50)"/>
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>   
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>                     		     		
+        </createTable>
+    </changeSet>
+    
+    <!--changeSet id="seed-tenant-data" author="Ebenezer Olanrewaju" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM tenant</sqlCheck>
+        </preConditions>
+        <loadData file="classpath:migrations/tenant.csv" tableName="tenant"/>
+    </changeSet-->
+    
+    <changeSet id="seed-role-data" author="Ebenezer Olanrewaju" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM role</sqlCheck>
+        </preConditions>
+        <loadData file="classpath:migrations/role.csv" tableName="role"/>
+    </changeSet>
+    
+    <changeSet id="seed-user-data" author="Ebenezer Olanrewaju" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM user</sqlCheck>
+        </preConditions>
+        <loadData file="classpath:migrations/user.csv" tableName="user"/>
+    </changeSet>
+    
+    <changeSet id="seed-user_role-data" author="Ebenezer Olanrewaju" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM user_role</sqlCheck>
+        </preConditions>
+        <loadData file="classpath:migrations/user_role.csv" tableName="user_role"/>
+    </changeSet>
+    
+    <changeSet id="create-menu-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="menu">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="menu_name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="menu_url" type="varchar(50)" />
+            <column name="enabled" type="int" defaultValue="1" >
+                <constraints nullable="false"/>
+            </column>               
+            <column name="menu_level" type="int" defaultValue="0"/>
+            <column name="permission_id" type="bigint" />
+            <column name="parent_id" type="bigint" />
+            <column name="created_by" type="varchar(100)"/>
+            <column name="created_date" type="datetime"/>      
+            <column name="last_modified_by" type="varchar(100)"/>                      
+            <column name="last_modified_date" type="datetime"/>                     		     		
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="create-access_log-table" author="Ebenezer Olanrewaju">
+        <createTable tableName="access_log">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="user_id" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>                      
+            <column name="login_time" type="datetime"/>
+            <column name="login_ip" type="varchar(50)"/>                     		     		
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
